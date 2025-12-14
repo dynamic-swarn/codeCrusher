@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Policy | Your Store Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #3498db;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .policy-container {
+            padding: 60px 0;
+        }
+        
+        .policy-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .policy-header h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .policy-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .policy-content {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .policy-section {
+            margin-bottom: 40px;
+        }
+        
+        .policy-section h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f1f1;
+        }
+        
+        .policy-section h3 {
+            color: #3498db;
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+        }
+        
+        .policy-section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .policy-section ul, .policy-section ol {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .policy-section li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        
+        .info-table th, .info-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .info-table th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .info-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .shipping-badge {
+            display: inline-block;
+            background-color: #2ecc71;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        /* FAQ Section */
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question:hover {
+            color: #3498db;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #555;
+            margin-top: 10px;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s;
+        }
+        
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .policy-header h1 {
+                font-size: 2.3rem;
+            }
+            
+            .policy-content {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+            
+            .policy-section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .info-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .policy-content {
+                padding: 20px;
+            }
+            
+            .policy-header {
+                margin-bottom: 30px;
+            }
+            
+            .policy-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+    <!-- Main Content -->
+    <main class="container policy-container">
+        <div class="policy-header">
+            <h1>Shipping Policy</h1>
+            <p>We aim to deliver your orders as quickly and efficiently as possible. Please review our shipping policy below for details on delivery times, shipping methods, and costs.</p>
+            <div style="margin-top: 20px;">
+                <span class="shipping-badge">Free Shipping on orders over $50</span>
+                <span class="shipping-badge">Fast Delivery</span>
+                <span class="shipping-badge">Track Your Order</span>
+            </div>
+        </div>
+        
+        <div class="policy-content">
+            <!-- Shipping Methods & Delivery Times -->
+            <section class="policy-section">
+                <h2>Shipping Methods & Delivery Times</h2>
+                <p>We offer several shipping options to meet your needs. All orders are processed within 1-2 business days (excluding weekends and holidays).</p>
+                
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>Shipping Method</th>
+                            <th>Delivery Time</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Standard Shipping</td>
+                            <td>5-7 business days</td>
+                            <td>$4.99 (Free on orders over $50)</td>
+                        </tr>
+                        <tr>
+                            <td>Expedited Shipping</td>
+                            <td>2-3 business days</td>
+                            <td>$9.99</td>
+                        </tr>
+                        <tr>
+                            <td>Express Shipping</td>
+                            <td>1-2 business days</td>
+                            <td>$14.99</td>
+                        </tr>
+                        <tr>
+                            <td>International Shipping</td>
+                            <td>10-21 business days</td>
+                            <td>Varies by destination</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="highlight-box">
+                    <p><strong>Note:</strong> Delivery times are estimates and may vary depending on your location, shipping carrier, and any unforeseen circumstances such as weather conditions or customs delays for international orders.</p>
+                </div>
+            </section>
+            
+            <!-- Order Processing -->
+            <section class="policy-section">
+                <h2>Order Processing</h2>
+                <p>Once your order is placed, you will receive an order confirmation email. When your order ships, you will receive a shipping confirmation email with tracking information.</p>
+                
+                <h3>Processing Time</h3>
+                <p>All orders are processed within 1-2 business days. Orders placed on weekends or holidays will begin processing the next business day.</p>
+                
+                <h3>Order Tracking</h3>
+                <p>Once your order has shipped, you will receive a tracking number via email. You can use this tracking number to monitor your package's progress on the carrier's website.</p>
+            </section>
+            
+            <!-- Shipping Destinations -->
+            <section class="policy-section">
+                <h2>Shipping Destinations</h2>
+                <p>We currently ship to the following locations:</p>
+                <ul>
+                    <li>United States (all 50 states)</li>
+                    <li>Canada</li>
+                    <li>United Kingdom</li>
+                    <li>Australia</li>
+                    <li>European Union countries</li>
+                </ul>
+                <p>For other international destinations, please contact our customer service team before placing your order to confirm availability and shipping costs.</p>
+            </section>
+            
+            <!-- Shipping Restrictions -->
+            <section class="policy-section">
+                <h2>Shipping Restrictions</h2>
+                <p>Some items have special shipping requirements or restrictions:</p>
+                <ol>
+                    <li><strong>Fragile items:</strong> May require special packaging and handling fees.</li>
+                    <li><strong>Hazardous materials:</strong> Cannot be shipped via standard methods.</li>
+                    <li><strong>Oversized items:</strong> May incur additional shipping charges.</li>
+                    <li><strong>Perishable goods:</strong> Have specific shipping requirements and may only be available for certain destinations.</li>
+                </ol>
+            </section>
+            
+            <!-- International Shipping -->
+            <section class="policy-section">
+                <h2>International Shipping</h2>
+                <p>For international orders, please note:</p>
+                <ul>
+                    <li>Delivery times may vary based on customs processing in your country</li>
+                    <li>You are responsible for any import duties, taxes, or customs fees</li>
+                    <li>International orders may be subject to additional documentation requirements</li>
+                    <li>Some products may not be available for international shipping due to legal restrictions</li>
+                </ul>
+            </section>
+            
+            <!-- FAQ Section -->
+            <section class="policy-section">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How can I change my shipping address after placing an order?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you need to change your shipping address, please contact our customer service team immediately at support@shopeasy.com or call (555) 123-4567. We can only change the shipping address if your order hasn't been processed for shipping yet.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What happens if my package is lost or damaged?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If your package is lost in transit or arrives damaged, please contact our customer service within 7 days of the expected delivery date. We will work with the shipping carrier to resolve the issue and may reship your order or issue a refund.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you offer free shipping?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer free standard shipping on all orders over $50 within the United States. For international orders, free shipping is available on orders over $100.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I ship to a PO Box?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we can ship to PO Boxes via USPS. However, expedited shipping options are not available for PO Box addresses, and delivery times may be longer.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What if I'm not home when my package is delivered?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most carriers will leave your package at your door or in a secure location. For high-value items, a signature may be required. If you're not available, the carrier will typically leave a notice with instructions for pickup or redelivery.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Contact Information -->
+            <section class="policy-section">
+                <h2>Need Help?</h2>
+                <p>If you have any questions about our shipping policy or need assistance with your order, please contact our customer service team:</p>
+                <ul>
+                    <li><strong>Email:</strong> support@shopeasy.com</li>
+                    <li><strong>Phone:</strong> (555) 123-4567</li>
+                    <li><strong>Hours:</strong> Monday-Friday, 9am-6pm EST</li>
+                </ul>
+                <p>We strive to respond to all inquiries within 24 hours during business days.</p>
+            </section>
+            
+            <!-- Policy Updates -->
+            <section class="policy-section">
+                <div class="highlight-box">
+                    <p><strong>Policy Updates:</strong> This shipping policy is subject to change without prior notice. Any changes will be reflected on this page. Last updated: October 15, 2023.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-column">
+                <h3>ShopEasy</h3>
+                <p>Your one-stop shop for all your needs. Quality products, excellent service, and fast shipping.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Commerce St, City, State 12345</li>
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@shopeasy.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // FAQ toggle function
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const toggleIcon = element.querySelector('.faq-toggle');
+            
+            answer.classList.toggle('active');
+            toggleIcon.classList.toggle('active');
+        }
+        
+        // Close mobile menu when clicking on a link
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+        
+        // Add active class to current page link
+        const currentLocation = window.location.href;
+        navItems.forEach(item => {
+            if(item.href === currentLocation) {
+                item.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

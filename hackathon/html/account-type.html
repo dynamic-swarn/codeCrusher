@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Account Type - E-Commerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    
+</head>
+
+<body>
+    <div class="floating-shapes">
+        <div class="shape" style="left:10%; animation-duration:7s;"></div>
+        <div class="shape" style="left:50%; animation-duration:9s;"></div>
+        <div class="shape" style="left:80%; animation-duration:5s;"></div>
+    </div>
+
+    <div class="account-type-page">
+        <div class="auth-container">
+            <div class="account-type-card">
+                <h1><i class="fas fa-user-cog"></i> Choose Account Type</h1>
+                <p>Select how you want to use our platform. You can switch later.</p>
+
+                <div class="account-cards">
+                    <div class="account-card" data-type="buyer">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>Buyer Account</h3>
+                        <p>Shop amazing products and track your orders.</p>
+                    </div>
+
+                    <div class="account-card" data-type="seller">
+                        <i class="fas fa-store"></i>
+                        <h3>Seller Account</h3>
+                        <p>List products and grow your business.</p>
+                    </div>
+                </div>
+
+                <button class="continue-btn" id="continueBtn" disabled>
+                    <i class="fas fa-rocket"></i> Continue to Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script>
+/* Toast function */
+function showToast(message, type='success') {
+    const toast = document.createElement("div");
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3500);
+}
+
+/* Load current user safely */
+let currentUser = null;
+try {
+    currentUser = JSON.parse(localStorage.getItem("currentUser"));
+} catch {}
+
+/* Allow selection even if not logged in (dev mode) */
+if (!currentUser) {
+    showToast("⚠️ Not logged in (development mode).", "error");
+}
+
+/* Cards + Button */
+const accountCards = document.querySelectorAll(".account-card");
+const continueBtn = document.getElementById("continueBtn");
+let selectedType = null;
+
+/* click select event */
+accountCards.forEach(card => {
+    card.addEventListener("click", () => {
+        accountCards.forEach(c => c.classList.remove("selected")); // remove previous
+        card.classList.add("selected"); // add new
+        selectedType = card.dataset.type;
+
+        continueBtn.disabled = false;
+        continueBtn.innerHTML =
+            `<i class="fas fa-rocket"></i> Go to ${selectedType.toUpperCase()} Dashboard`;
+
+        showToast(`Selected: ${selectedType.toUpperCase()} Account`);
+    });
+});
+
+/* Continue button */
+continueBtn.addEventListener("click", () => {
+    if (!selectedType) {
+        showToast("Please select an account type!", "error");
+        return;
+    }
+
+    if (!currentUser) currentUser = { name: "Guest" };
+
+    currentUser.accountType = selectedType;
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+    showToast(`Welcome ${currentUser.name}!\n${selectedType.toUpperCase()} Dashboard Loading...`);
+
+    setTimeout(() => {
+        window.location.href =
+            selectedType === "buyer"
+            ? "home.html"
+            : "seller.html";
+    }, 1200);
+});
+</script>
+
+</body>
+</html>

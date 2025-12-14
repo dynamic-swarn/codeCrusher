@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's & Women's Footwear</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #3498db, #e74c3c);
+            border-radius: 2px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        
+        .gender-toggle {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .toggle-btn {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            background-color: #ecf0f1;
+            color: #7f8c8d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+            margin: 0 10px;
+        }
+        
+        .toggle-btn.active {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .toggle-btn:not(.active):hover {
+            background-color: #d5dbdb;
+        }
+        
+        .women-btn.active {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(52, 152, 219, 0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .women .category-badge {
+            background-color: rgba(231, 76, 60, 0.9);
+        }
+        
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .women .card-title i {
+            color: #e74c3c;
+        }
+        
+        .examples {
+            margin-bottom: 20px;
+        }
+        
+        .examples h4 {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .examples-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .example-tag {
+            background-color: #ecf0f1;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+        
+        .features {
+            margin-top: auto;
+        }
+        
+        .features h4 {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .features-list {
+            list-style-type: none;
+        }
+        
+        .features-list li {
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features-list li i {
+            color: #2ecc71;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        
+        .empty-state p {
+            color: #95a5a6;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px 0;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .gender-toggle {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .toggle-btn {
+                margin: 5px;
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Footwear Collection</h1>
+        <p class="subtitle">Explore our premium selection of men's and women's footwear designed for performance, comfort, and style across various activities.</p>
+        
+        <div class="gender-toggle">
+            <button class="toggle-btn active men-btn" data-gender="men">
+                <i class="fas fa-male"></i> Men's Footwear
+            </button>
+            <button class="toggle-btn women-btn" data-gender="women">
+                <i class="fas fa-female"></i> Women's Footwear
+            </button>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <!-- Men's Footwear Cards -->
+            <div class="card men">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Men's Running Shoes">
+                    <span class="category-badge">Running Shoes</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title"><i class="fas fa-running"></i> Running Shoes</h3>
+                    
+                    <div class="examples">
+                        <h4>Examples</h4>
+                        <div class="examples-list">
+                            <span class="example-tag">Neutral</span>
+                            <span class="example-tag">Stability</span>
+                            <span class="example-tag">Trail runners</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> Advanced cushioning systems</li>
+                            <li><i class="fas fa-check-circle"></i> Durable tread pattern for various surfaces</li>
+                            <li><i class="fas fa-check-circle"></i> Enhanced flexibility for natural movement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card men">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Men's Training Shoes">
+                    <span class="category-badge">Training Shoes</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title"><i class="fas fa-dumbbell"></i> Training Shoes</h3>
+                    
+                    <div class="examples">
+                        <h4>Examples</h4>
+                        <div class="examples-list">
+                            <span class="example-tag">Cross-trainers</span>
+                            <span class="example-tag">Gym shoes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> Lateral support for side-to-side movements</li>
+                            <li><i class="fas fa-check-circle"></i> Flat soles for stability during lifting</li>
+                            <li><i class="fas fa-check-circle"></i> Breathable materials for intense workouts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card men">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80" alt="Men's Hiking Boots">
+                    <span class="category-badge">Hiking Boots/Shoes</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title"><i class="fas fa-hiking"></i> Hiking Boots/Shoes</h3>
+                    
+                    <div class="examples">
+                        <h4>Examples</h4>
+                        <div class="examples-list">
+                            <span class="example-tag">Mid-cut waterproof boots</span>
+                            <span class="example-tag">Trail shoes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> Ankle support for uneven terrain</li>
+                            <li><i class="fas fa-check-circle"></i> Waterproof membranes (Gore-Tex® etc.)</li>
+                            <li><i class="fas fa-check-circle"></i> Deep lugs for superior grip on trails</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card men">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Men's Sports Specific Shoes">
+                    <span class="category-badge">Sports Specific</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title"><i class="fas fa-basketball-ball"></i> Sports Specific</h3>
+                    
+                    <div class="examples">
+                        <h4>Examples</h4>
+                        <div class="examples-list">
+                            <span class="example-tag">Basketball shoes</span>
+                            <span class="example-tag">Soccer cleats</span>
+                            <span class="example-tag">Golf shoes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> Specialized traction for court/field surfaces</li>
+                            <li><i class="fas fa-check-circle"></i> Sport-specific design and support</li>
+                            <li><i class="fas fa-check-circle"></i> Optimized for specific athletic movements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Women's Footwear Cards -->
+            <div class="card women hidden">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Women's Running Shoes">
+                    <span class="category-badge">Running Shoes</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title"><i class="fas fa-running"></i> Running Shoes</h3>
+                    
+                    <div class="examples">
+                        <h4>Examples</h4>
+                        <div class="examples-list">
+                            <span class="example-tag">Road running</span>
+                            <span class="example-tag">Lightweight trainers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> Responsive cushioning for impact absorption</li>
+                            <li><i class="fas fa-check-circle"></i> Engineered tread pattern for road surfaces</li>
+                            <li><i class="fas fa-check-circle"></i> Lightweight construction for speed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card women hidden">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Women's Training Shoes">
+                    <span class="category-badge">Training Shoes</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title"><i class="fas fa-dumbbell"></i> Training Shoes</h3>
+                    
+                    <div class="examples">
+                        <h4>Examples</h4>
+                        <div class="examples-list">
+                            <span class="example-tag">HIIT sneakers</span>
+                            <span class="example-tag">Studio shoes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> Multi-directional support for varied workouts</li>
+                            <li><i class="fas fa-check-circle"></i> Flexible yet stable for plyometrics</li>
+                            <li><i class="fas fa-check-circle"></i> Breathable mesh uppers for ventilation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card women hidden">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1558699448-6f4051160a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80" alt="Women's Hiking Shoes">
+                    <span class="category-badge">Hiking Boots/Shoes</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title"><i class="fas fa-hiking"></i> Hiking Boots/Shoes</h3>
+                    
+                    <div class="examples">
+                        <h4>Examples</h4>
+                        <div class="examples-list">
+                            <span class="example-tag">Low-cut hikers</span>
+                            <span class="example-tag">Backpacking boots</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> Lightweight construction for long distances</li>
+                            <li><i class="fas fa-check-circle"></i> Waterproof with breathable technology</li>
+                            <li><i class="fas fa-check-circle"></i> Aggressive tread patterns for traction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card women hidden">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1179&q=80" alt="Women's Sports Specific Shoes">
+                    <span class="category-badge">Sports Specific</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title"><i class="fas fa-basketball-ball"></i> Sports Specific</h3>
+                    
+                    <div class="examples">
+                        <h4>Examples</h4>
+                        <div class="examples-list">
+                            <span class="example-tag">Tennis shoes</span>
+                            <span class="example-tag">Cycling shoes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> Court-specific traction patterns</li>
+                            <li><i class="fas fa-check-circle"></i> Sport-specific support and stability</li>
+                            <li><i class="fas fa-check-circle"></i> Designed for female foot anatomy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Footwear Collection &copy; 2023 | Designed for Performance and Style</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menBtn = document.querySelector('.men-btn');
+            const womenBtn = document.querySelector('.women-btn');
+            const menCards = document.querySelectorAll('.card.men');
+            const womenCards = document.querySelectorAll('.card.women');
+            
+            // Initially show men's cards
+            menCards.forEach(card => card.classList.remove('hidden'));
+            
+            menBtn.addEventListener('click', function() {
+                // Update active button
+                menBtn.classList.add('active');
+                womenBtn.classList.remove('active');
+                
+                // Show men's cards, hide women's cards
+                menCards.forEach(card => card.classList.remove('hidden'));
+                womenCards.forEach(card => card.classList.add('hidden'));
+            });
+            
+            womenBtn.addEventListener('click', function() {
+                // Update active button
+                womenBtn.classList.add('active');
+                menBtn.classList.remove('active');
+                
+                // Show women's cards, hide men's cards
+                womenCards.forEach(card => card.classList.remove('hidden'));
+                menCards.forEach(card => card.classList.add('hidden'));
+            });
+            
+            // Add hover effect to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.12)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.08)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

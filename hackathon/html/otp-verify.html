@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - E-Commerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1><i class="fas fa-sms"></i> Verify OTP</h1>
+                <p>Enter 6-digit code sent to <strong id="otpEmail"></strong></p>
+            </div>
+            <form id="otpForm">
+                <div class="otp-inputs">
+                    <input type="text" class="otp-input" maxlength="1" autocomplete="one-time-code">
+                    <input type="text" class="otp-input" maxlength="1" autocomplete="one-time-code">
+                    <input type="text" class="otp-input" maxlength="1" autocomplete="one-time-code">
+                    <input type="text" class="otp-input" maxlength="1" autocomplete="one-time-code">
+                    <input type="text" class="otp-input" maxlength="1" autocomplete="one-time-code">
+                    <input type="text" class="otp-input" maxlength="1" autocomplete="one-time-code">
+                </div>
+                <div class="error-message" id="otpError">Invalid OTP code</div>
+                <button type="submit" class="auth-btn">
+                    <span class="btn-glow"></span>
+                    <i class="fas fa-arrow-right"></i> Verify OTP
+                </button>
+            </form>
+            <div class="auth-footer">
+                <p><a href="forgot-password.html"><i class="fas fa-redo"></i> Resend OTP</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const resetEmail = localStorage.getItem('resetEmail');
+        const generatedOtp = localStorage.getItem('generatedOtp');
+        
+        document.getElementById('otpEmail').textContent = resetEmail || 'your email';
+        
+        // Auto-focus OTP inputs
+        const otpInputs = document.querySelectorAll('.otp-input');
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (this.value.length === 1 && index < 5) {
+                    otpInputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && !this.value && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const paste = (e.clipboardData || window.clipboardData).getData('text');
+                if (paste.length === 6) {
+                    otpInputs.forEach((input, i) => {
+                        input.value = paste[i] || '';
+                    });
+                    otpInputs[5].focus();
+                }
+            });
+        });
+        
+        // Focus first input
+        otpInputs[0].focus();
+        
+        document.getElementById('otpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const enteredOtp = Array.from(otpInputs).map(input => input.value).join('');
+            
+            if (enteredOtp === generatedOtp) {
+                window.location.href = 'reset-password.html';
+            } else {
+                otpInputs.forEach(input => input.classList.add('error'));
+                document.getElementById('otpError').classList.add('show');
+                setTimeout(() => {
+                    otpInputs.forEach(input => input.classList.remove('error'));
+                    document.getElementById('otpError').classList.remove('show');
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - E-Commerce Platform</title>
+    <link rel="stylesheet" href="../css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="seller-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-store"></i>
+                <span>Seller Dashboard</span>
+            </div>
+            
+            <!-- Switch Account Button -->
+            <div class="switch-account-container">
+                <button class="switch-account-btn" id="switchAccountBtn">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Switch to Buyer</span>
+                </button>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="#products"><i class="fas fa-box"></i> My Products</a>
+                <a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a>
+                <a href="#analytics"><i class="fas fa-chart-line"></i> Analytics</a>
+                <a href="index.html" id="logoutBtn" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+            <div class="user-info-mobile">
+                <span id="mobileSellerName">Seller</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="seller-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="seller-profile">
+                <div class="profile-img">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 id="sellerName">Loading...</h3>
+                <p id="sellerEmail">Loading...</p>
+                <div class="store-rating">
+                    <span class="stars">☆☆☆☆☆</span>
+                    <span class="rating-text">No ratings yet</span>
+                </div>
+                <div class="seller-since">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>Member since: <span id="joinDate">--</span></span>
+                </div>
+                <div class="account-type">
+                    <i class="fas fa-badge-check"></i>
+                    <span>Seller Account</span>
+                </div>
+                
+                <!-- Switch Account Button in Sidebar -->
+                <button class="sidebar-switch-btn" id="sidebarSwitchBtn">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Switch to Buyer Account</span>
+                </button>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="#" class="active"><i class="fas fa-plus-circle"></i> Add Product</a>
+                <a href="#" id="myProductsLink"><i class="fas fa-boxes"></i> My Products (<span id="productCount">0</span>)</a>
+                <a href="#" id="categoriesLink"><i class="fas fa-tags"></i> Categories</a>
+                <a href="#" id="storeSettingsLink"><i class="fas fa-cog"></i> Store Settings</a>
+                <a href="#" id="helpLink"><i class="fas fa-question-circle"></i> Help & Support</a>
+            </div>
+            
+            <div class="sidebar-stats">
+                <div class="stat-item">
+                    <h4>Total Products</h4>
+                    <p class="stat-number" id="totalProducts">0</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Active Orders</h4>
+                    <p class="stat-number" id="activeOrders">0</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Total Sales</h4>
+                    <p class="stat-number" id="totalSales">₹0</p>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <h4>Quick Actions</h4>
+                <button class="quick-btn" id="quickAdd">
+                    <i class="fas fa-plus"></i> Add Product
+                </button>
+                <button class="quick-btn" id="viewStore">
+                    <i class="fas fa-store"></i> View Store
+                </button>
+                <button class="quick-btn" id="editProfile">
+                    <i class="fas fa-user-edit"></i> Edit Profile
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            <!-- Welcome Header -->
+            <div class="dashboard-header" id="dashboardHeader">
+                <!-- Will be populated by JavaScript -->
+            </div>
+
+            <!-- Setup Guide for New Sellers -->
+            <div class="setup-guide" id="setupGuide">
+                <h2><i class="fas fa-rocket"></i> Welcome to Seller Central!</h2>
+                <p>Complete these steps to start your selling journey</p>
+                
+                <div class="setup-steps">
+                    <div class="setup-step completed">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Account Created</h3>
+                            <p>Your seller account is ready</p>
+                        </div>
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    
+                    <div class="setup-step active">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Add First Product</h3>
+                            <p>List your first item for sale</p>
+                        </div>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Set Up Payment</h3>
+                            <p>Configure payment methods</p>
+                        </div>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Get First Order</h3>
+                            <p>Start receiving orders</p>
+                        </div>
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                </div>
+                
+                <div class="setup-tips">
+                    <h3><i class="fas fa-lightbulb"></i> Pro Tips for Beginners:</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <i class="fas fa-camera"></i>
+                            <h4>Quality Images</h4>
+                            <p>Use clear, well-lit photos from multiple angles</p>
+                        </div>
+                        <div class="tip-card">
+                            <i class="fas fa-pen-alt"></i>
+                            <h4>Detailed Descriptions</h4>
+                            <p>Include all specifications and features</p>
+                        </div>
+                        <div class="tip-card">
+                            <i class="fas fa-tag"></i>
+                            <h4>Competitive Pricing</h4>
+                            <p>Research market prices before setting yours</p>
+                        </div>
+                        <div class="tip-card">
+                            <i class="fas fa-shipping-fast"></i>
+                            <h4>Fast Shipping</h4>
+                            <p>Offer quick delivery options</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Form -->
+            <div class="product-form-container" id="productFormContainer">
+                <form id="productForm" class="product-form">
+                    <!-- Basic Information -->
+                    <div class="form-section">
+                        <h2><i class="fas fa-info-circle"></i> Basic Information</h2>
+                        
+                        <div class="form-group">
+                            <label for="productName"><i class="fas fa-cube"></i> Product Name *</label>
+                            <input type="text" id="productName" placeholder="Enter product name" required>
+                            <div class="form-hint">Be specific and descriptive</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productCategory"><i class="fas fa-tags"></i> Category *</label>
+                                <select id="productCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="fashion">Fashion & Clothing</option>
+                                    <option value="home">Home & Kitchen</option>
+                                    <option value="beauty">Beauty & Health</option>
+                                    <option value="sports">Sports & Outdoors</option>
+                                    <option value="books">Books & Stationery</option>
+                                    <option value="toys">Toys & Games</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productBrand"><i class="fas fa-trademark"></i> Brand Name</label>
+                                <input type="text" id="productBrand" placeholder="Enter brand name (optional)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing & Stock -->
+                    <div class="form-section">
+                        <h2><i class="fas fa-dollar-sign"></i> Pricing & Stock</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productPrice"><i class="fas fa-tag"></i> Price (₹) *</label>
+                                <input type="number" id="productPrice" min="0" step="0.01" placeholder="0.00" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productDiscount"><i class="fas fa-percentage"></i> Discount (%)</label>
+                                <input type="number" id="productDiscount" min="0" max="100" placeholder="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productStock"><i class="fas fa-boxes"></i> Stock Quantity *</label>
+                                <input type="number" id="productStock" min="0" placeholder="0" required>
+                            </div>
+                        </div>
+                        
+                        <div class="discount-preview" id="discountPreview" style="display: none;">
+                            <h4><i class="fas fa-calculator"></i> Price Breakdown</h4>
+                            <div class="price-breakdown">
+                                <div class="price-row">
+                                    <span>Original Price:</span>
+                                    <span>₹<span id="originalPrice">0</span></span>
+                                </div>
+                                <div class="price-row discount">
+                                    <span>Discount (<span id="discountPercent">0</span>%):</span>
+                                    <span>-₹<span id="savings">0</span></span>
+                                </div>
+                                <div class="price-row final">
+                                    <span>Final Price:</span>
+                                    <span>₹<span id="discountedPrice">0</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Description -->
+                    <div class="form-section">
+                        <h2><i class="fas fa-file-alt"></i> Product Description</h2>
+                        
+                        <div class="form-group">
+                            <label for="productDescription"><i class="fas fa-align-left"></i> Description *</label>
+                            <textarea id="productDescription" rows="5" placeholder="Describe your product in detail... Include features, specifications, usage instructions, etc." required></textarea>
+                            <div class="char-count">
+                                <span id="charCount">0</span>/2000 characters
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="productFeatures"><i class="fas fa-star"></i> Key Features (one per line)</label>
+                            <textarea id="productFeatures" rows="4" placeholder="• Feature 1&#10;• Feature 2&#10;• Feature 3"></textarea>
+                            <div class="form-hint">Add bullet points or numbered features</div>
+                        </div>
+                    </div>
+
+                    <!-- Product Images -->
+                    <div class="form-section">
+                        <h2><i class="fas fa-images"></i> Product Images</h2>
+                        
+                        <div class="image-upload-area">
+                            <div class="upload-box" id="uploadBox">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop product images here</p>
+                                <p class="upload-subtext">or click to browse (PNG, JPG, WebP)</p>
+                                <input type="file" id="imageUpload" accept="image/*" multiple>
+                            </div>
+                            <div class="upload-hint">
+                                <p><i class="fas fa-info-circle"></i> Upload up to 5 images. First image will be displayed as main.</p>
+                                <p><i class="fas fa-exclamation-triangle"></i> Recommended: 800×800px or larger, under 2MB each</p>
+                            </div>
+                            <div class="image-preview" id="imagePreview">
+                                <!-- Images will be previewed here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Information -->
+                    <div class="form-section">
+                        <h2><i class="fas fa-shipping-fast"></i> Shipping Information</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productWeight"><i class="fas fa-weight"></i> Weight (kg)</label>
+                                <input type="number" id="productWeight" min="0" step="0.1" placeholder="0.0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productDimensions"><i class="fas fa-ruler-combined"></i> Dimensions (L×W×H in cm)</label>
+                                <input type="text" id="productDimensions" placeholder="10×5×2">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="shippingType"><i class="fas fa-truck"></i> Shipping Type</label>
+                            <select id="shippingType">
+                                <option value="free">Free Shipping</option>
+                                <option value="fixed">Fixed Rate: ₹50</option>
+                                <option value="calculated">Calculated by Weight</option>
+                                <option value="pickup">Local Pickup Only</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="form-section">
+                        <h2><i class="fas fa-clipboard-list"></i> Additional Information</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="warrantyPeriod"><i class="fas fa-shield-alt"></i> Warranty Period</label>
+                                <select id="warrantyPeriod">
+                                    <option value="">No Warranty</option>
+                                    <option value="7">7 Days</option>
+                                    <option value="30">30 Days</option>
+                                    <option value="90">90 Days</option>
+                                    <option value="180">6 Months</option>
+                                    <option value="365">1 Year</option>
+                                    <option value="730">2 Years</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="returnPolicy"><i class="fas fa-exchange-alt"></i> Return Policy</label>
+                                <select id="returnPolicy">
+                                    <option value="7">7 Days Return</option>
+                                    <option value="15">15 Days Return</option>
+                                    <option value="30">30 Days Return</option>
+                                    <option value="none">No Returns</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="saveDraft">
+                            <i class="fas fa-save"></i> Save as Draft
+                        </button>
+                        <button type="button" class="btn-secondary" id="previewProduct">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-upload"></i> Publish Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Empty State for Products -->
+            <div class="empty-state" id="emptyProductsState">
+                <div class="empty-icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <h2>Ready to Start Selling?</h2>
+                <p>Your seller account is set up! Add your first product to begin your e-commerce journey.</p>
+                <button class="btn-primary" id="addFirstProduct">
+                    <i class="fas fa-plus"></i> Add Your First Product
+                </button>
+                <div class="empty-tips">
+                    <h3><i class="fas fa-lightbulb"></i> Why Start Selling?</h3>
+                    <div class="benefits">
+                        <div class="benefit">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h4>Earn Money</h4>
+                            <p>Turn your products into income</p>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-users"></i>
+                            <h4>Reach Customers</h4>
+                            <p>Access thousands of buyers</p>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Grow Business</h4>
+                            <p>Scale at your own pace</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Products Section -->
+            <div class="recent-products" id="recentProductsSection" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> Your Products</h2>
+                    <div class="section-actions">
+                        <button class="btn-secondary" id="viewAllProducts">
+                            <i class="fas fa-list"></i> View All
+                        </button>
+                        <button class="btn-primary" id="addNewProduct">
+                            <i class="fas fa-plus"></i> Add New
+                        </button>
+                    </div>
+                </div>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Product cards will be dynamically added -->
+                </div>
+                <div class="no-products" id="noProductsMessage" style="display: none;">
+                    <i class="fas fa-inbox"></i>
+                    <h3>No Products Found</h3>
+                    <p>You haven't added any products yet.</p>
+                    <button class="btn-secondary" id="startAddingProducts">Start Adding Products</button>
+                </div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="stats-section" id="statsSection" style="display: none;">
+                <h2><i class="fas fa-chart-bar"></i> Store Performance</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon views">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Total Views</h3>
+                        <p class="stat-number" id="totalViews">0</p>
+                        <p class="stat-change">+0 this week</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orders">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Total Orders</h3>
+                        <p class="stat-number" id="totalOrders">0</p>
+                        <p class="stat-change">+0 this week</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <h3>Total Revenue</h3>
+                        <p class="stat-number" id="totalRevenue">₹0</p>
+                        <p class="stat-change">+₹0 this week</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon conversion">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h3>Conversion Rate</h3>
+                        <p class="stat-number" id="conversionRate">0%</p>
+                        <p class="stat-change">+0% this week</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- First Product Success Modal -->
+    <div class="modal" id="firstProductModal">
+        <div class="modal-content celebration">
+            <div class="confetti">
+                <div class="confetti-piece"></div>
+                <div class="confetti-piece"></div>
+                <div class="confetti-piece"></div>
+                <div class="confetti-piece"></div>
+                <div class="confetti-piece"></div>
+            </div>
+            <div class="modal-icon success">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h2>Congratulations! 🎉</h2>
+            <p>You've successfully listed your first product!</p>
+            <p class="modal-subtext">Your store is now live and ready to receive orders.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="addAnotherProduct">
+                    <i class="fas fa-plus"></i> Add Another Product
+                </button>
+                <button class="btn-primary" id="viewMyStore">
+                    <i class="fas fa-store"></i> View My Store
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Product Published Successfully!</h2>
+            <p>Your product is now listed on the marketplace.</p>
+            <button class="btn-primary" id="closeModal">Continue</button>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-edit"></i> Edit Profile</h2>
+                <button class="modal-close" id="closeProfileModal">&times;</button>
+            </div>
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="editName"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="editName" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="editStoreName"><i class="fas fa-store"></i> Store Name</label>
+                    <input type="text" id="editStoreName" placeholder="Enter your store name">
+                </div>
+                <div class="form-group">
+                    <label for="editPhone"><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="editPhone" placeholder="Enter phone number">
+                </div>
+                <div class="form-group">
+                    <label for="editAddress"><i class="fas fa-map-marker-alt"></i> Address</label>
+                    <textarea id="editAddress" rows="3" placeholder="Enter your address"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelProfileEdit">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Switch Account Confirmation Modal -->
+    <div class="modal" id="switchAccountModal">
+        <div class="modal-content">
+            <div class="modal-icon warning">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+            <h2>Switch Account?</h2>
+            <p>Are you sure you want to switch to <span id="switchToAccount">Buyer</span> account?</p>
+            <p class="modal-subtext">You can switch back anytime from the dashboard.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelSwitch">Cancel</button>
+                <button class="btn-primary" id="confirmSwitch">Switch Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/seller.js"></script>
+</body>
+</html>

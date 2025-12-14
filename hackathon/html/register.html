@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - E-Commerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1><i class="fas fa-user-plus"></i> Create Account</h1>
+                <p>Join thousands of happy customers</p>
+            </div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <input type="email" id="regEmail" required>
+                    <label for="regEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                    <div class="error-message" id="regEmailError">Please enter a valid email</div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" required minlength="8">
+                    <label for="regPassword"><i class="fas fa-lock"></i> Create Password</label>
+                    <div class="password-strength">
+                        <div class="strength-fill"></div>
+                    </div>
+                    <div class="error-message" id="regPasswordError">Password must be 8+ characters</div>
+                </div>
+                <button type="submit" class="auth-btn" id="regBtn">
+                    <span class="btn-glow"></span>
+                    <i class="fas fa-rocket"></i> Create Account
+                </button>
+                <div class="success-message" id="regSuccess" style="display: none;">
+                    <i class="fas fa-check-circle"></i> Account created successfully!
+                </div>
+            </form>
+            <div class="auth-footer">
+                <p>Already have an account? <a href="index.html"><i class="fas fa-sign-in-alt"></i> Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        const regEmail = document.getElementById('regEmail');
+        const regPassword = document.getElementById('regPassword');
+        const strengthFill = document.querySelector('.strength-fill');
+        const regBtn = document.getElementById('regBtn');
+        
+        // Password strength checker
+        regPassword.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            strengthFill.className = 'strength-fill';
+            if (strength <= 1) strengthFill.classList.add('strength-weak');
+            else if (strength <= 2) strengthFill.classList.add('strength-medium');
+            else strengthFill.classList.add('strength-strong');
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => el.classList.remove('show'));
+            
+            const email = regEmail.value;
+            const password = regPassword.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(email)) {
+                document.getElementById('regEmailError').classList.add('show');
+                return;
+            }
+            
+            if (password.length < 8) {
+                document.getElementById('regPasswordError').classList.add('show');
+                return;
+            }
+            
+            if (users.find(user => user.email === email)) {
+                alert('❌ Email already registered! Please use a different email.');
+                return;
+            }
+            
+            // Create user
+            const user = { 
+                email, 
+                password, 
+                name: email.split('@')[0], 
+                address: '',
+                accountType: null 
+            };
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Success feedback
+            document.getElementById('regSuccess').style.display = 'block';
+            regBtn.disabled = true;
+            regBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Created!';
+            
+            setTimeout(() => {
+                alert('✅ Account created successfully! Redirecting to login...');
+                window.location.href = 'index.html';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

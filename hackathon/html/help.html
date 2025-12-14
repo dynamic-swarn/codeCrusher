@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Help | carto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #3498db;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            margin-bottom: 50px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .hero-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+        
+        /* Main Content */
+        .help-container {
+            padding: 30px 0 80px;
+        }
+        
+        /* Quick Help Section */
+        .quick-help {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .help-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .help-card i {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .help-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .help-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .help-card .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .help-card .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .contact-info h2, .contact-form h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f1f1;
+        }
+        
+        .contact-methods {
+            margin-bottom: 30px;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-method i {
+            font-size: 1.5rem;
+            color: #3498db;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-method h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .contact-method p {
+            color: #666;
+        }
+        
+        .business-hours {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .business-hours h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .hours-list {
+            list-style: none;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .hours-list li span:last-child {
+            font-weight: 600;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .submit-btn i {
+            margin-right: 10px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 60px;
+        }
+        
+        .faq-section h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f1f1;
+            text-align: center;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #555;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 20px 20px;
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s;
+        }
+        
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+        
+        /* Live Chat Section */
+        .live-chat-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .live-chat-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .live-chat-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .chat-btn {
+            display: inline-block;
+            background-color: white;
+            color: #3498db;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .chat-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .chat-btn i {
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-section {
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .live-chat-section {
+                padding: 40px 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-form {
+                padding: 20px;
+            }
+            
+            .help-card {
+                padding: 25px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo"><span>Carto</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./home.html"><i class="fas fa-home"></i> Home</a></li>
+                <!-- <li><a href="#"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#" class="active"><i class="fas fa-headset"></i> Contact & Help</a></li>
+                <li><a href="#"><i class="fas fa-user"></i> Account</a></li> -->
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>How Can We Help You?</h1>
+            <p>Our customer support team is here to answer your questions and help with any issues you might have. Choose the most convenient way to get in touch with us.</p>
+            
+            <div class="hero-badges">
+                <div class="hero-badge"><i class="fas fa-clock"></i> 24/7 Support Available</div>
+                <div class="hero-badge"><i class="fas fa-check-circle"></i> Average Response Time: 2 Hours</div>
+                <div class="hero-badge"><i class="fas fa-star"></i> Customer Satisfaction: 98%</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container help-container">
+        <!-- Quick Help Section -->
+        <section class="quick-help">
+            <div class="help-card">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Order & Shipping</h3>
+                <p>Track your order, check shipping status, or update delivery preferences.</p>
+                <a href="#" class="btn">Get Order Help</a>
+            </div>
+            
+            <div class="help-card">
+                <i class="fas fa-undo-alt"></i>
+                <h3>Returns & Refunds</h3>
+                <p>Start a return, check refund status, or learn about our return policy.</p>
+                <a href="#" class="btn">Return an Item</a>
+            </div>
+            
+            <div class="help-card">
+                <i class="fas fa-credit-card"></i>
+                <h3>Payment & Billing</h3>
+                <p>Questions about charges, payment methods, or billing issues.</p>
+                <a href="#" class="btn">Billing Support</a>
+            </div>
+            
+            <div class="help-card">
+                <i class="fas fa-question-circle"></i>
+                <h3>Product Help</h3>
+                <p>Get assistance with product setup, usage, or technical issues.</p>
+                <a href="#" class="btn">Product Support</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+1 (800) 123-4567</p>
+                            <p>Available Monday-Friday, 8am-8pm EST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>support@shopeasy.com</p>
+                            <p>We respond within 2 hours during business hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Visit Our Office</h4>
+                            <p>123 Commerce Street</p>
+                            <p>New York, NY 10001, United States</p>
+                            <p>By appointment only</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="business-hours">
+                    <h4>Business Hours</h4>
+                    <ul class="hours-list">
+                        <li><span>Monday - Friday</span> <span>8:00 AM - 8:00 PM</span></li>
+                        <li><span>Saturday</span> <span>9:00 AM - 6:00 PM</span></li>
+                        <li><span>Sunday</span> <span>10:00 AM - 4:00 PM</span></li>
+                        <li><span>Holidays</span> <span>10:00 AM - 2:00 PM</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a topic</option>
+                            <option value="order">Order Issue</option>
+                            <option value="shipping">Shipping Question</option>
+                            <option value="return">Return/Refund</option>
+                            <option value="product">Product Question</option>
+                            <option value="account">Account Issue</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="order">Order Number (if applicable)</label>
+                        <input type="text" id="order" name="order">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How long does shipping take?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Shipping times vary based on your location and the shipping method selected at checkout. Standard shipping typically takes 5-7 business days, expedited shipping takes 2-3 business days, and express shipping arrives in 1-2 business days. You'll receive a tracking number once your order ships.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is your return policy?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day return policy for most items in their original condition. Some items like personalized products, digital downloads, and perishable goods are not eligible for return. To start a return, visit the "Returns & Refunds" section in your account or contact our support team.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How can I track my order?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Once your order ships, you'll receive a shipping confirmation email with a tracking number and link. You can also track your order by logging into your account and visiting the "Order History" section. If you're having trouble tracking your package, contact our support team for assistance.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you ship internationally?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we ship to over 50 countries worldwide. International shipping costs and delivery times vary by destination. Please note that customers are responsible for any customs duties, taxes, or import fees that may apply to their order.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards (Visa, MasterCard, American Express, Discover), PayPal, Apple Pay, Google Pay, and ShopPay. All payments are processed securely through encrypted connections to ensure your financial information is protected.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Chat Section -->
+        <section class="live-chat-section">
+            <h2>Need Immediate Help?</h2>
+            <p>Chat with our support team in real-time for quick answers to your questions. Our average response time is under 2 minutes during business hours.</p>
+            <a href="#" class="chat-btn" id="chatBtn">
+                <i class="fas fa-comments"></i> Start Live Chat Now
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-column">
+                <h3>ShopEasy</h3>
+                <p>Your one-stop shop for all your needs. Quality products, excellent service, and fast shipping.</p>
+                <div style="margin-top: 15px;">
+                    <a href="#" style="color: #bdc3c7; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: #bdc3c7; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: #bdc3c7; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color: #bdc3c7; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact & Help</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Help Center</h3>
+                <ul>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Commerce St, NYC 10001</li>
+                    <li><i class="fas fa-phone"></i> +1 (800) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@shopeasy.com</li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 8am-8pm EST</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2023 ShopEasy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget (Hidden by default) -->
+    <div id="chatWidget" style="display: none; position: fixed; bottom: 20px; right: 20px; width: 350px; background: white; border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 1000;">
+        <div style="background: #3498db; color: white; padding: 15px; border-radius: 10px 10px 0 0; display: flex; justify-content: space-between; align-items: center;">
+            <h4 style="margin: 0;"><i class="fas fa-comments"></i> Live Chat</h4>
+            <button id="closeChat" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer;">×</button>
+        </div>
+        <div style="padding: 20px; max-height: 400px; overflow-y: auto;">
+            <div style="background: #f1f1f1; padding: 10px; border-radius: 10px; margin-bottom: 15px;">
+                <p style="margin: 0;">Hi! I'm Sarah, your support agent. How can I help you today?</p>
+            </div>
+            <div id="chatMessages"></div>
+        </div>
+        <div style="padding: 15px; border-top: 1px solid #eee;">
+            <div style="display: flex;">
+                <input type="text" id="chatInput" placeholder="Type your message..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px 0 0 5px;">
+                <button id="sendChat" style="background: #3498db; color: white; border: none; padding: 0 15px; border-radius: 0 5px 5px 0; cursor: pointer;"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // FAQ toggle function
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const toggleIcon = element.querySelector('.faq-toggle');
+            
+            answer.classList.toggle('active');
+            toggleIcon.classList.toggle('active');
+        }
+        
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // In a real application, you would send this data to your server
+            // For demo purposes, we'll just show an alert
+            alert(`Thank you, ${data.name}! Your message has been sent. We'll get back to you at ${data.email} within 2 hours.`);
+            
+            // Reset the form
+            contactForm.reset();
+        });
+        
+        // Chat functionality
+        const chatBtn = document.getElementById('chatBtn');
+        const chatWidget = document.getElementById('chatWidget');
+        const closeChat = document.getElementById('closeChat');
+        const sendChat = document.getElementById('sendChat');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+        
+        // Open chat widget
+        chatBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            chatWidget.style.display = 'block';
+        });
+        
+        // Close chat widget
+        closeChat.addEventListener('click', function() {
+            chatWidget.style.display = 'none';
+        });
+        
+        // Send chat message
+        sendChat.addEventListener('click', function() {
+            sendMessage();
+        });
+        
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.style.textAlign = 'right';
+            userMessage.style.marginBottom = '10px';
+            userMessage.innerHTML = `
+                <div style="display: inline-block; background: #3498db; color: white; padding: 10px; border-radius: 10px 10px 0 10px; max-width: 80%;">
+                    <p style="margin: 0;">${message}</p>
+                </div>
+            `;
+            chatMessages.appendChild(userMessage);
+            
+            // Clear input
+            chatInput.value = '';
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Simulate bot response after a delay
+            setTimeout(() => {
+                const botResponse = document.createElement('div');
+                botResponse.style.textAlign = 'left';
+                botResponse.style.marginBottom = '10px';
+                
+                let responseText = '';
+                if (message.toLowerCase().includes('shipping') || message.toLowerCase().includes('delivery')) {
+                    responseText = 'Our standard shipping takes 5-7 business days. You can track your order using the tracking number sent to your email.';
+                } else if (message.toLowerCase().includes('return') || message.toLowerCase().includes('refund')) {
+                    responseText = 'We offer a 30-day return policy. To start a return, please visit your account page or contact our support team with your order number.';
+                } else if (message.toLowerCase().includes('payment') || message.toLowerCase().includes('charge')) {
+                    responseText = 'We accept all major credit cards, PayPal, Apple Pay, and Google Pay. All transactions are secure and encrypted.';
+                } else {
+                    responseText = 'Thank you for your message. One of our support agents will be with you shortly. In the meantime, is there anything specific I can help you with regarding your order, shipping, or returns?';
+                }
+                
+                botResponse.innerHTML = `
+                    <div style="display: inline-block; background: #f1f1f1; padding: 10px; border-radius: 10px 10px 10px 0; max-width: 80%;">
+                        <p style="margin: 0;"><strong>Sarah:</strong> ${responseText}</p>
+                    </div>
+                `;
+                chatMessages.appendChild(botResponse);
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+        
+        // Close mobile menu when clicking on a link
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+    </script>
+</body>
+</html>

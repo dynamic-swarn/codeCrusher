@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | FashionHub - India's Leading Fashion Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #2874f0;
+            --primary-dark: #1c60d1;
+            --secondary: #fb641b;
+            --light-bg: #f5f5f5;
+            --dark-text: #212121;
+            --medium-text: #878787;
+            --border: #e0e0e0;
+            --white: #ffffff;
+            --shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+            --shadow-lg: 0 2px 10px 0 rgba(0,0,0,.1);
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.5;
+        }
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        /* About Content */
+        .about-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .about-text {
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 25px;
+            border-radius: 10px;
+            background: var(--light-bg);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            color: var(--dark-text);
+        }
+
+        /* Partners Section */
+        .partners-section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 40px;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .partner-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+        }
+
+        .partner-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .partner-logo {
+            height: 60px;
+            width: 100%;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-logo img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            filter: grayscale(100%) contrast(0.8);
+            transition: filter 0.3s ease;
+        }
+
+        .partner-card:hover .partner-logo img {
+            filter: none;
+        }
+
+        .partner-name {
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .partner-category {
+            font-size: 0.85rem;
+            color: var(--medium-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .partner-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-top: 10px;
+        }
+
+        /* Leadership Team */
+        .team-section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 40px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--light-bg);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 15px;
+            font-weight: 600;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        img:hover{
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+        /* Footer */
+        .footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            background: #444;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                gap: 30px;
+            }
+            
+            .search-bar {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header .container {
+                flex-wrap: wrap;
+            }
+            
+            .search-bar {
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+                margin-top: 10px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav ul {
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .about-content, .partners-section, .team-section {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-top {
+                font-size: 12px;
+            }
+            
+            .header-top-links a {
+                margin-left: 10px;
+            }
+            
+            .hero-section {
+                padding: 40px 0;
+            }
+            
+            .features, .partners-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+  </style>
+</head>
+<body>
+       <!-- About Content -->
+        <section class="about-content">
+            <h2 class="section-title">About Us</h2>
+            <p class="about-text">
+                Founded in 2025, <b>🛒Carto</b> started with a simple idea: to make fashion accessible to everyone in India. What began as a small startup in LIT(Lakshya Institute of Technology) Student has grown into India's leading fashion e-commerce platform, serving millions of customers across the country.
+            </p>
+            <p class="about-text">
+                We partner with the best brands, both international and homegrown, to bring you the latest trends at affordable prices. From everyday wear to festive collections, from sportswear to luxury items, 🛒Carto is your one-stop destination for all things fashion.
+            </p>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Free & Fast Delivery</h3>
+                    <p>Free delivery on orders above ₹299. Same-day delivery in select cities.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-undo-alt"></i>
+                    <h3>Easy Returns</h3>
+                    <p>30-day return policy. No questions asked returns for most products.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safe & Secure</h3>
+                    <p>100% secure payments with SSL encryption. Your data is always protected.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer support via chat, phone, and email.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners Section -->
+        <section class="partners-section">
+            <h2 class="section-title">Our Brand Partners</h2>
+            <p class="about-text">We partner with leading brands across categories to bring you the best selection of fashion products.</p>
+            
+            <div class="partners-grid">
+                <!-- Clothing Brands -->
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/nike.svg" alt="Nike">
+                    </div>
+                    <div class="partner-name">Nike</div>
+                    <div class="partner-category">Clothing & Footwear</div>
+                    <div class="partner-badge">Premium Partner</div>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/adidas.svg" alt="Adidas">
+                    </div>
+                    <div class="partner-name">Adidas</div>
+                    <div class="partner-category">Clothing & Footwear</div>
+                    <div class="partner-badge">Premium Partner</div>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/hm.svg" alt="H&M">
+                    </div>
+                    <div class="partner-name">H&M</div>
+                    <div class="partner-category">Clothing</div>
+                </div>
+                
+                <!-- Footwear Brands -->
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/puma.svg" alt="Puma">
+                    </div>
+                    <div class="partner-name">Puma</div>
+                    <div class="partner-category">Footwear</div>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/reebok.svg" alt="Reebok">
+                    </div>
+                    <div class="partner-name">Reebok</div>
+                    <div class="partner-category">Footwear</div>
+                </div>
+                
+                <!-- Jewellery Brands -->
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/tiffany.svg" alt="Tanishq">
+                    </div>
+                    <div class="partner-name">Tanishq</div>
+                    <div class="partner-category">Jewellery</div>
+                    <div class="partner-badge">Premium Partner</div>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/cartier.svg" alt="PC Jeweller">
+                    </div>
+                    <div class="partner-name">PC Jeweller</div>
+                    <div class="partner-category">Jewellery</div>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/bulgari.svg" alt="Kalyan Jewellers">
+                    </div>
+                    <div class="partner-name">Kalyan Jewellers</div>
+                    <div class="partner-category">Jewellery</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Team -->
+        <section class="team-section">
+            <h2 class="section-title">Our Developer</h2>
+            <p class="about-text">Meet the team that's revolutionizing fashion e-commerce in India.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar"><img src="./img/bid.jpeg" alt=""></div>
+                    <h3>Bidisha Priyadarshini</h3>
+                    <p>Student @LIT</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar"><img src="./img/dibya.jpeg" alt=""></div>
+                    <h3>Dibyaranjan Behera</h3>
+                  <p>Student @LIT</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar"><img src="./img/satya.jpeg" alt=""></div>
+                    <h3>Satyajit Behera</h3>
+                   <p>Student @LIT</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar"><img src="./img/swarna.jpeg" alt=""></div>
+                    <h3>Swarnamayee Panda</h3>
+                     <p>Student @LIT</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>🛒Carto</h3>
+                    <p>India's leading fashion destination for clothing, footwear, jewellery and accessories.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">Men</a></li>
+                        <li><a href="#">Women</a></li>
+                        <li><a href="#">Kids</a></li>
+                        <li><a href="#">Footwear</a></li>
+                        <li><a href="#">Jewellery</a></li>
+                         <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@carto.com</li>
+                        <li><i class="fas fa-phone"></i> 1800-123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i>Bhubaneswar, India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 Carto. All rights reserved. | Made with <i class="fas fa-heart" style="color: #fb641b;"></i> in India</p>
+            </div>
+        </div>
+    </footer>
+  
+</body>
+</html>
